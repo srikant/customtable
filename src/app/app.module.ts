@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { CustomtableComponent } from './customtable/customtable.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CustomtableComponent
   ],
   imports: [
     BrowserModule

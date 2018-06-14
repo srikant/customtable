@@ -1,0 +1,38 @@
+this.sharedData.tabSet.select(id);
+console.log(this.sharedData.tabSet);
+Observable.create(observer => {
+    setTimeout(() => {
+        this.sharedData.tabSet.select(id)
+        observer.complete();
+        console.log("Observer complete");
+    }, 1);
+})
+.subscribe(
+  result => {
+      this.sharedData.tabSet.select(id);
+      console.log("subscription complete");
+  },
+  err => console.error(err),
+  () => {
+      this.sharedData.tabSet.select(id);
+      console.log(this.sharedData.tabSet.activeId);
+      console.log('done');
+  }
+);
+
+
+setTimeout(() => {
+    this._watch = Observable.from(this.ngbTabset.tabs);
+    this._watch.subscribe(
+      x => console.log('onNext: %s', x),
+      e => console.log('onError: %s', e),
+      () => {
+          var index = this.ngbTabset.tabs.length - 1;
+          var lastTab = this.ngbTabset.tabs.last;
+          console.log(this.ngbTabset.tabs);
+          console.log(index);
+          console.log(lastTab);
+          this.ngbTabset.select(lastTab.id);
+          console.log('onCompleted');
+      });
+})
